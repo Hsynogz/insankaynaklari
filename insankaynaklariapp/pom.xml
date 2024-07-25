@@ -8,11 +8,11 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.HRapp</groupId>
-	<artifactId>HRapp</artifactId>
+	<groupId>com.Hrapp</groupId>
+	<artifactId>insankaynaklariapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HRapp</name>
-	<description>Demo project for Spring Boot</description>
+	<name>insankaynaklariapp</name>
+	<description>Hrappproject for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -40,6 +40,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
@@ -47,6 +51,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -85,6 +95,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
