@@ -1,13 +1,13 @@
-package com.insankaynaklariapp;
+package com.HR.inskay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InsankaynaklariappApplication {
+public class InskayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InsankaynaklariappApplication.class, args);
+		SpringApplication.run(InskayApplication.class, args);
 	}
 
 }
