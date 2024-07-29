@@ -2,7 +2,6 @@ package com.HR.inskay.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.Date;
 
@@ -10,7 +9,7 @@ import java.sql.Date;
 @Data
 @Table(name="personel")
 
-public class personel {
+public class Personel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

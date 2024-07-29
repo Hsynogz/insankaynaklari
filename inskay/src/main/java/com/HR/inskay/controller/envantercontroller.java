@@ -1,45 +1,47 @@
 package com.HR.inskay.controller;
 
-import com.HR.inskay.entity.envanter;
-import com.HR.inskay.repository.envanterrepository;
+import com.HR.inskay.entity.Envanter;
+import com.HR.inskay.repository.EnvanterRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+import java.util.Optional;
+@Setter
+@Controller
 @RestController
 @RequestMapping( "/envanter")
-public class envantercontroller {
+public class EnvanterController {
 
     @Autowired
-    private envanterrepository envanterRepository;
-
+    private EnvanterRepository envanterRepository;
 
     @GetMapping("/{id}")
-    public ResponseEntity<envanter> getEnvanterById(@PathVariable Long id) {
-        return envanterRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Envanter> getEnvanterById(@PathVariable Long id) {
+        Optional<Envanter> envanter = envanterRepository.findById(id);
+        return envanter.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{id}")
-    public envanter createEnvanter(@RequestBody envanter envanter) {
+    @PostMapping
+    public Envanter createEnvanter(@RequestBody Envanter envanter) {
         return envanterRepository.save(envanter);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<envanter> updateEnvanter(@PathVariable Long id, @RequestBody envanter envanterDetails) {
-        return envanterRepository.findById(id)
-                .map(envanter -> {
-                    envanter.setenvanterTipi(envanterDetails.getenvanterTipi());
-                    envanter.setmarka(envanterDetails.getmarka());
-                    envanter.setModel(envanterDetails.getModel());
-                    envanter.setSerinumarasi(envanterDetails.getSerinumarasi());
-                    envanter.setStatu(envanterDetails.getStatu());
-                    envanterRepository.save(envanter);
-                    return ResponseEntity.ok(envanter);
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Envanter> updateEnvanter(@PathVariable Long id, @RequestBody Envanter envanterDetails) {
+        Optional<Envanter> envanter = envanterRepository.findById(id);
+        if (envanter.isPresent()) {
+            envanter.get().setEnvanterTipi(envanterDetails.getEnvanterTipi());
+            envanter.get().setMarka(envanterDetails.getMarka());
+            envanter.get().setModel(envanterDetails.getModel());
+            envanter.get().setSeriNumarasi(envanterDetails.getSeriNumarasi());
+            envanter.get().setStatu(envanterDetails.getStatu());
+            envanterRepository.save(envanter.get());
+            return ResponseEntity.ok(envanter.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }

@@ -1,26 +1,30 @@
 package com.HR.inskay.services;
 
-import com.HR.inskay.entity.envanter;
-import com.HR.inskay.repository.envanterrepository;
+import com.HR.inskay.entity.Envanter;
+import com.HR.inskay.repository.EnvanterRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Setter
 @Service
-public class envanterservice {
+public class EnvanterService {
     @Autowired
-    private envanterrepository envanterRepository;
+    private EnvanterRepository envanterRepository;
 
-    public List<envanter> getAllEnvanter() {
+    @SuppressWarnings("unused")
+    public List<Envanter> getAllEnvanter() {
         return envanterRepository.findAll();
     }
-
-    public envanter saveOrUpdateEnvanter(envanter envanter) {
+    @SuppressWarnings("unused")
+    public Envanter saveOrUpdateEnvanter(Envanter envanter) {
         return envanterRepository.save(envanter);
     }
-
+    @SuppressWarnings("unused")
     public void deleteEnvanter(Long id) {
         envanterRepository.deleteById(id);
     }
+
 }

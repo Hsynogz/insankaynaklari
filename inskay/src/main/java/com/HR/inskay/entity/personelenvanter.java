@@ -1,10 +1,16 @@
 package com.HR.inskay.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
+@Setter
+@Getter
 @Entity
-public class personelenvanter {
+@Table(name = "personelenvanter")
+public class PersonelEnvanter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,78 +18,22 @@ public class personelenvanter {
 
     @ManyToOne
     @JoinColumn(name = "personel_id")
-    private personel personel;
+    private Personel personel;
 
     @ManyToOne
     @JoinColumn(name = "envanter_id")
-    private envanter envanter;
+    private Envanter envanter;
 
-    private LocalDate alisTarihi; // Date yerine LocalDate kullanıldı
-
+    private LocalDate alisTarihi;
     @ManyToOne
     @JoinColumn(name = "teslim_eden_personel_id")
-    private personel teslimEdenPersonel;
+    private Personel teslimEdenPersonel;
 
-    private LocalDate donusTarihi; // Date yerine LocalDate kullanıldı
+    private LocalDate donusTarihi;
 
     @ManyToOne
     @JoinColumn(name = "teslim_alan_personel_id")
-    private personel teslimAlanPersonel;
+    private Personel teslimAlanPersonel;
 
-    // Getter ve Setter metodları
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public personel getPersonel() {
-        return personel;
-    }
-
-    public void setPersonel(personel personel) {
-        this.personel = personel;
-    }
-
-    public envanter getEnvanter() {
-        return envanter;
-    }
-
-    public void setEnvanter(envanter envanter) {
-        this.envanter = envanter;
-    }
-
-    public LocalDate getAlisTarihi() {
-        return alisTarihi;
-    }
-
-    public void setAlisTarihi(LocalDate alisTarihi) {
-        this.alisTarihi = alisTarihi;
-    }
-
-    public personel getTeslimEdenPersonel() {
-        return teslimEdenPersonel;
-    }
-
-    public void setTeslimEdenPersonel(personel teslimEdenPersonel) {
-        this.teslimEdenPersonel = teslimEdenPersonel;
-    }
-
-    public LocalDate getDonusTarihi() {
-        return donusTarihi;
-    }
-
-    public void setDonusTarihi(LocalDate donusTarihi) {
-        this.donusTarihi = donusTarihi;
-    }
-
-    public personel getTeslimAlanPersonel() {
-        return teslimAlanPersonel;
-    }
-
-    public void setTeslimAlanPersonel(personel teslimAlanPersonel) {
-        this.teslimAlanPersonel = teslimAlanPersonel;
-    }
 }

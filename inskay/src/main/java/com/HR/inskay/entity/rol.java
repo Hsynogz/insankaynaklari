@@ -1,10 +1,16 @@
 package com.HR.inskay.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Set;
 
+@Setter
+@Getter
 @Entity
-public class rol {
+@Table(name="rol")
+public class Rol {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,30 +19,7 @@ public class rol {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<user> users;
+    private Set<User> users;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<user> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<user> users) {
-        this.users = users;
-    }
 }

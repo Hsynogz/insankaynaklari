@@ -1,6 +1,4 @@
 package com.HR.inskay.config;
-
-import com.HR.inskay.services.userservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +17,11 @@ public class securityconfig {
     @Autowired
     private UserDetailsService userDetailsService; // UserDetailsService bean'ini enjekte et
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -28,8 +31,8 @@ public class securityconfig {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/", "/home").permitAll() // Publicly accessible
-                .anyRequest().authenticated() // All other requests need authentication
+                .requestMatchers("/", "/home").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -39,8 +42,5 @@ public class securityconfig {
                 .permitAll();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }

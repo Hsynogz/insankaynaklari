@@ -1,27 +1,33 @@
 package com.HR.inskay.controller;
-
-import ch.qos.logback.core.model.Model;
-import com.HR.inskay.entity.user;
+import com.HR.inskay.entity.User;
 import com.HR.inskay.services.userservice;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Setter
 @Controller
-public class usercontroller {
+@RequestMapping("/users")
+public class UserController {
+
     @Autowired
     private userservice userService;
 
-    @GetMapping("/registration")
-    public String registration(Model model) {
-        model.addText("user");
-        return "registration";
+    @GetMapping("/kayit")
+    public String registrationForm(Model model) {
+        model.addAttribute("user", new User());
+        return "kayit";
     }
 
-    @PostMapping("/registration")
-    public String registration(user user) {
+    @PostMapping("/kayit")
+    public String registration(User user) {
         userService.saveUser(user);
-        return "redirect:/login";
+        return "kayit:/login";
     }
+
 }
+
